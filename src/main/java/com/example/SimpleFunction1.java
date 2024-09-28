@@ -34,14 +34,14 @@ public class SimpleFunction1 {
 		return pipeline
 				.apply(Create.of(Arrays.asList("one", "two", "three", "four")))
 				.apply(MapElements.via(
-					new SimpleFunction<String, String>() {
-					  @Override
-					  public String apply(String line) {
-						String ret = line.toUpperCase();
-						// System.out.println("** " + ret);
-						return ret;
-					  }
-					}))
+						new SimpleFunction<String, String>() {
+							@Override
+							public String apply(String line) {
+								String ret = "**" + line.toUpperCase();
+								// System.out.println("** " + ret);
+								return ret;
+							}
+						}))
 				.apply("Print elements",
 						MapElements.into(TypeDescriptors.strings()).via(x -> {
 							System.out.println(x);

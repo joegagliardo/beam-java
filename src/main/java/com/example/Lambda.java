@@ -32,7 +32,7 @@ public class Lambda {
 	public static PCollection<String> buildPipeline(Pipeline pipeline, String inputText) {
 		return pipeline
 				.apply(Create.of(Arrays.asList("one", "two", "three", "four")))
-				.apply(MapElements.into(TypeDescriptors.strings()).via((String line) -> line.toUpperCase()))
+				.apply(MapElements.into(TypeDescriptors.strings()).via((String line) -> "*" + line.toUpperCase()))
 				.apply("Print elements",
 						MapElements.into(TypeDescriptors.strings()).via(x -> {
 							System.out.println(x);
