@@ -1,0 +1,3 @@
+org.apache.beam.vendor.grpc.v1p60p1.io.grpc.grpclb.SecretGrpclbNameResolverProvider$Provider
+org.apache.beam.vendor.grpc.v1p60p1.io.grpc.netty.UdsNameResolverProvider
+org.apache.beam.vendor.grpc.v1p60p1.io.grpc.internal.DnsNameResolverProvider

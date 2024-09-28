@@ -1,0 +1,2 @@
+org.apache.beam.sdk.schemas.io.payloads.JsonPayloadSerializerProvider
+org.apache.beam.sdk.schemas.io.payloads.JsonPayloadSerializerProvider

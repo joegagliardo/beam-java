@@ -1,0 +1,13 @@
+org.apache.beam.sdk.transforms.Redistribute$Registrar
+org.apache.beam.sdk.util.construction.CombineTranslation$Registrar
+org.apache.beam.sdk.util.construction.CreatePCollectionViewTranslation$Registrar
+org.apache.beam.sdk.util.construction.FlattenTranslator$Registrar
+org.apache.beam.sdk.util.construction.GroupByKeyTranslation$Registrar
+org.apache.beam.sdk.util.construction.GroupIntoBatchesTranslation$Registrar
+org.apache.beam.sdk.util.construction.ImpulseTranslation$Registrar
+org.apache.beam.sdk.util.construction.ReadTranslation$Registrar
+org.apache.beam.sdk.util.construction.ReshuffleTranslation$Registrar
+org.apache.beam.sdk.util.construction.SplittableParDo$Registrar
+org.apache.beam.sdk.util.construction.TestStreamTranslation$TestStreamTranslator$Registrar
+org.apache.beam.sdk.util.construction.WindowIntoTranslation$Registrar
+org.apache.beam.sdk.util.construction.WriteFilesTranslation$Registrar

@@ -1,0 +1,12 @@
+org.apache.beam.sdk.providers.GenerateSequenceSchemaTransformProvider
+org.apache.beam.sdk.schemas.transforms.providers.FlattenTransformProvider
+org.apache.beam.sdk.schemas.transforms.providers.JavaExplodeTransformProvider
+org.apache.beam.sdk.schemas.transforms.providers.JavaFilterTransformProvider
+org.apache.beam.sdk.schemas.transforms.providers.JavaMapToFieldsTransformProvider
+org.apache.beam.sdk.schemas.transforms.providers.LoggingTransformProvider
+org.apache.beam.sdk.providers.GenerateSequenceSchemaTransformProvider
+org.apache.beam.sdk.schemas.transforms.providers.FlattenTransformProvider
+org.apache.beam.sdk.schemas.transforms.providers.JavaExplodeTransformProvider
+org.apache.beam.sdk.schemas.transforms.providers.JavaFilterTransformProvider
+org.apache.beam.sdk.schemas.transforms.providers.JavaMapToFieldsTransformProvider
+org.apache.beam.sdk.schemas.transforms.providers.LoggingTransformProvider

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.apache.beam.runners.direct
+Class-Path: beam-vendor-guava-32_1_2-jre-0.1.jar beam-model-pipeline-2
+ .59.0.jar beam-vendor-grpc-1_60_1-0.2.jar joda-time-2.10.14.jar slf4j
+ -api-1.7.30.jar jackson-annotations-2.15.4.jar jackson-core-2.15.4.ja
+ r jackson-databind-2.15.4.jar auto-value-annotations-1.9.jar error_pr
+ one_annotations-2.10.0.jar httpclient-4.5.13.jar httpcore-4.4.14.jar 
+ conscrypt-openjdk-uber-2.5.2.jar commons-logging-1.2.jar commons-code
+ c-1.17.0.jar
+

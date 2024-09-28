@@ -1,0 +1,5 @@
+org.apache.beam.vendor.grpc.v1p60p1.io.grpc.protobuf.services.internal.HealthCheckingRoundRobinLoadBalancerProvider
+org.apache.beam.vendor.grpc.v1p60p1.io.grpc.grpclb.GrpclbLoadBalancerProvider
+org.apache.beam.vendor.grpc.v1p60p1.io.grpc.internal.PickFirstLoadBalancerProvider
+org.apache.beam.vendor.grpc.v1p60p1.io.grpc.util.SecretRoundRobinLoadBalancerProvider$Provider
+org.apache.beam.vendor.grpc.v1p60p1.io.grpc.util.OutlierDetectionLoadBalancerProvider

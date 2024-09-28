@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.apache.beam.model.job.management
+Class-Path: beam-vendor-grpc-1_60_1-0.2.jar auto-value-annotations-1.8
+ .2.jar error_prone_annotations-2.20.0.jar httpclient-4.5.13.jar httpc
+ ore-4.4.15.jar conscrypt-openjdk-uber-2.5.2.jar commons-logging-1.2.j
+ ar commons-codec-1.11.jar
+
