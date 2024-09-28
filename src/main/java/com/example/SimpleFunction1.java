@@ -32,7 +32,7 @@ public class SimpleFunction1 {
 
 	public static PCollection<String> buildPipeline(Pipeline pipeline, String inputText) {
 		return pipeline
-				.apply(Create.of(Arrays.asList("one", "two", "three", "four")))
+				.apply(Create.of(Arrays.asList("one", "two", "three", "four", inputText)))
 				.apply(MapElements.via(
 						new SimpleFunction<String, String>() {
 							@Override
@@ -52,7 +52,8 @@ public class SimpleFunction1 {
 	public static void main(String[] args) {
 		var options = PipelineOptionsFactory.fromArgs(args).withValidation().as(Options.class);
 		var pipeline = Pipeline.create(options);
-		SimpleFunction1.buildPipeline(pipeline, options.getInputText());
+		String inputText = options.getInputText();
+		SimpleFunction1.buildPipeline(pipeline, inputText);
 		pipeline.run().waitUntilFinish();
 	}
 }
