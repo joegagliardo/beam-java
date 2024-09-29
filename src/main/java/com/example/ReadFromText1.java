@@ -75,8 +75,6 @@ public class ReadFromText1 {
 // --gcpTempLocation=gs://joey-dataflow-bucket/temp
 // --dataflowServiceOptions=enable_prime"
 
-// gradle run -PmainClass="com.example.ReadFromText1"
-// --args="--inputFile=gs://joey-dataflow-bucket/regions.csv
-// --outputFolder=gs://joey-dataflow-bucket/temp/regions --runner=DataflowRunner
-// --project=joey-gagliardo --region=us-central1
-// --gcpTempLocation=gs://joey-dataflow-bucket/temp"
+// gradle run -PmainClass="com.example.ReadFromText1" --args="--inputFile=gs://joey-dataflow-bucket/regions.csv --outputFolder=gs://joey-dataflow-bucket/temp/regions"
+
+// gradle run -PmainClass="com.example.ReadFromText1" --args="--inputFile=gs://joey-dataflow-bucket/regions.csv --outputFolder=gs://joey-dataflow-bucket/temp/output/regions --runner=DataflowRunner --project=joey-gagliardo --region=us-central1 --gcpTempLocation=gs://joey-dataflow-bucket/temp"

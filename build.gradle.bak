@@ -6,7 +6,6 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-
 plugins {
     id 'application'
 }
@@ -23,49 +22,24 @@ application {
     mainClass = project.hasProperty("mainClass") ? project.getProperty("mainClass") : "App"
 }
 
-java {
-  toolchain {
-    languageVersion.set(JavaLanguageVersion.of(11))
-  }
-}
-
 test {
     // JUnit 4.
     useJUnit()
 }
 
-ext {
-    apacheBeamVersion = '2.59.0'
-
-    project_id = 'joey-gagliardo'
-    region = 'us-central1'
-    bucket = 'gs://joey-dataflow-bucket'
-} 
-
-// task dataflow(type:JavaExec) {
-//     mainClass = "$mainClass"
-//     classpath = sourceSets.main.runtimeClasspath
-
-//     args = [
-//         "--runner=DataflowRunner",
-//         "--project=$project_id",
-//         "--region=$region",
-//         "--gcpTempLocation=${bucket}/temp"
-//     ]
-// }
-
 dependencies {
-    implementation "org.apache.beam:beam-sdks-java-core:$apacheBeamVersion"
-    implementation "org.apache.beam:beam-runners-google-cloud-dataflow-java:$apacheBeamVersion"
-    runtimeOnly "org.apache.beam:beam-runners-direct-java:$apacheBeamVersion"
-    runtimeOnly "org.slf4j:slf4j-api:2.+"
-    runtimeOnly "org.slf4j:slf4j-jdk14:2.+"
+    // App dependencies.
+    implementation "org.apache.beam:beam-sdks-java-core:2.59.0"
+    implementation "org.apache.beam:beam-runners-direct-java:2.59.0"
+    implementation 'org.apache.beam:beam-runners-google-cloud-dataflow-java:2.59.0'
+    implementation "org.slf4j:slf4j-jdk14:1.7.32"
+
+    // Tests dependencies.
     testImplementation "junit:junit:4.13.2"
     testImplementation 'org.hamcrest:hamcrest:2.2'
 }
 
 // Package a self-contained jar file.
-
 jar {
     archiveBaseName = 'pipeline'
     destinationDirectory = file('build')
@@ -79,4 +53,9 @@ jar {
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+
+compileJava {
+  options.incremental = false
 }
+}
+

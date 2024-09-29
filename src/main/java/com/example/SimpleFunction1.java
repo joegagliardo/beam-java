@@ -38,7 +38,6 @@ public class SimpleFunction1 {
 							@Override
 							public String apply(String line) {
 								String ret = "**" + line.toUpperCase();
-								// System.out.println("** " + ret);
 								return ret;
 							}
 						}))
@@ -57,3 +56,6 @@ public class SimpleFunction1 {
 		pipeline.run().waitUntilFinish();
 	}
 }
+
+// gradle run -PmainClass="com.example.SimpleFunction1"
+// --args='--inputText="Five"'

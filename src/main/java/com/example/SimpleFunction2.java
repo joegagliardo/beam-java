@@ -34,7 +34,7 @@ public class SimpleFunction2 {
 
 	public static PCollection<String> buildPipeline(Pipeline pipeline, String inputText) {
 		return pipeline
-				.apply(Create.of(Arrays.asList("one", "two", "three", "four")))
+				.apply(Create.of(Arrays.asList("one", "two", "three", "four", inputText)))
 				.apply(MapElements.via(
 						new SimpleFunction<String, String>() {
 							@Override
@@ -54,10 +54,11 @@ public class SimpleFunction2 {
 	}
 
 	public static void main(String[] args) {
-		PipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation()
-				.as(Options.class);
-		Pipeline pipeline = Pipeline.create(options);
-		SimpleFunction2.buildPipeline(pipeline, "");
+		System.out.println("SimpleFunction2");
+		var options = PipelineOptionsFactory.fromArgs(args).withValidation().as(Options.class);
+		var pipeline = Pipeline.create(options);
+		String inputText = options.getInputText();
+		SimpleFunction2.buildPipeline(pipeline, inputText);
 		pipeline.run().waitUntilFinish();
 	}
 }
@@ -75,3 +76,6 @@ public class SimpleFunction2 {
 // --args="--runner=DataflowRunner --project=joey-gagliardo --region=us-central1
 // --gcpTempLocation=gs://joey-dataflow-bucket/temp
 // --dataflowServiceOptions=enable_prime"
+
+// gradle run -PmainClass="com.example.SimpleFunction2"
+// --args='--inputText="Five"'
