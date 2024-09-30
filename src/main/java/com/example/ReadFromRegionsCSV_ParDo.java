@@ -23,7 +23,11 @@ import org.apache.beam.sdk.values.TypeDescriptors;
 import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.io.TextIO;
 
-public class ReadFromText1 {
+import org.apache.beam.sdk.transforms.ParDo;
+import org.apache.beam.sdk.transforms.DoFn;
+import org.apache.beam.sdk.transforms.DoFn.ProcessContext;
+
+public class ReadFromRegionsCSV_ParDo {
 	public interface Options extends StreamingOptions {
 		@Description("Input text to print.")
 		@Default.String("regions.csv")
@@ -41,14 +45,15 @@ public class ReadFromText1 {
 	public static PCollection<String> buildPipeline(Pipeline pipeline, String inputFile, String outputFolder) {
 		PCollection<String> p = pipeline
 				.apply("Read", TextIO.read().from(inputFile))
-				.apply("Parse",
-						MapElements.into(TypeDescriptors.strings()).via((String element) -> element.toUpperCase()));
+				.apply("Parse", ParDo.of(new DoFn<String, String>() {
+					@ProcessElement
+					public void process(ProcessContext c) {
+						String element = c.element();
+						// String[] elements = element.split(",");
+						c.output(element + "**");
+					}}));
 		p.apply(TextIO.write().to(outputFolder));
 		return p;
-	}
-
-	public static String upper(String line) {
-		return "****" + line.toUpperCase();
 	}
 
 	public static void main(String[] args) {
@@ -56,7 +61,7 @@ public class ReadFromText1 {
 		var pipeline = Pipeline.create(options);
 		String inputFile = options.getInputFile();
 		String outputFolder = options.getOutputFolder();
-		ReadFromText1.buildPipeline(pipeline, inputFile, outputFolder);
+		ReadFromRegionsCSV_ParDo.buildPipeline(pipeline, inputFile, outputFolder);
 		pipeline.run().waitUntilFinish();
 	}
 }
@@ -66,15 +71,8 @@ public class ReadFromText1 {
 // --temp-location=gs://joey-dataflow-bucket/temp --runner=dataflow
 // --jar=SimpleFunction2.jar
 
-// gradle run -PmainClass="com.example.SimpleFunction2"
-// --args="--runner=DataflowRunner --project=joey-gagliardo --region=us-central1
-// --gcpTempLocation=gs://joey-dataflow-bucket/temp"
+// gradle run -PmainClass="com.example.ReadFromRegionsCSV_ParDo" --args="--inputFile=data/regions.csv --outputFolder=tmp/regionsCSV_ParDo"
 
-// gradle run -PmainClass="com.example.SimpleFunction2"
-// --args="--runner=DataflowRunner --project=joey-gagliardo --region=us-central1
-// --gcpTempLocation=gs://joey-dataflow-bucket/temp
-// --dataflowServiceOptions=enable_prime"
+// gradle run -PmainClass="com.example.ReadFromRegionsCSV_ParDo" --args="--inputFile=gs://joey-dataflow-bucket/data/regions.csv --outputFolder=gs://joey-dataflow-bucket/temp/regions_ParDo"
 
-// gradle run -PmainClass="com.example.ReadFromText1" --args="--inputFile=gs://joey-dataflow-bucket/regions.csv --outputFolder=gs://joey-dataflow-bucket/temp/regions"
-
-// gradle run -PmainClass="com.example.ReadFromText1" --args="--inputFile=gs://joey-dataflow-bucket/regions.csv --outputFolder=gs://joey-dataflow-bucket/temp/output/regions --runner=DataflowRunner --project=joey-gagliardo --region=us-central1 --gcpTempLocation=gs://joey-dataflow-bucket/temp"
+// gradle run -PmainClass="com.example.ReadFromRegionsCSV_ParDo" --args="--inputFile=gs://joey-dataflow-bucket/data/regions.csv --outputFolder=gs://joey-dataflow-bucket/temp/output/regions_ParDo --runner=DataflowRunner --project=joey-gagliardo --region=us-central1 --gcpTempLocation=gs://joey-dataflow-bucket/temp --dataflowServiceOptions=enable_prime"
